@@ -1,61 +1,115 @@
-const selectionButtons = document.querySelectorAll('[data-selection]');
-const playButton = document.querySelector('.play-btn');
+const game = () => {
+	let winningText = document.querySelector('.winner');
+	const emojiBtns = document.querySelector('.emoji-buttons');
+	let playerPoints = 0;
+	let compPoints = 0;
 
-const moves = [
-	{
-		name: 'rock',
-		emoji: '✊',
-		beats: 'scissors',
-	},
-	{
-		name: 'paper',
-		emoji: '✋',
-		beats: 'rock',
-	},
-	{
-		name: 'scissors',
-		emoji: '✌',
-		beats: 'paper',
-	},
-];
+	const startGame = () => {
+		const playButton = document.querySelector('.play-btn');
+		const introScreen = document.querySelector('.intro');
+		const matchScreen = document.querySelector('.match');
 
-selectionButtons.forEach((selectionButton) => {
-	selectionButton.addEventListener('click', (e) => {
-		const selectionName = selectionButton.dataset.selection;
-		const selection = moves.find((move) => move.name === selectionName);
-
-		playButton.addEventListener('click', (e) => {
-			makeSelection(selection);
+		playButton.addEventListener('click', () => {
+			introScreen.classList.add('fadeOut');
+			matchScreen.classList.add('fadeIn');
 		});
-	});
-});
+	};
+	const playMatch = () => {
+		const selectionButtons = document.querySelectorAll('[data-selection]');
+		let playerHand = document.querySelector('.player-hand');
+		let computerHand = document.querySelector('.computer-hand');
 
-function makeSelection(selection) {
-	const computerSelection = randomSelection();
-	const youWin = isWinner(selection, computerSelection);
-	const compWins = isWinner(computerSelection, selection);
+		const moves = [
+			{
+				name: 'rock',
+				emoji: '✊',
+				beats: 'scissors',
+			},
+			{
+				name: 'paper',
+				emoji: '✋',
+				beats: 'rock',
+			},
+			{
+				name: 'scissors',
+				emoji: '✌',
+				beats: 'paper',
+			},
+		];
 
-	if (youWin) {
-    console.log('you win');
-    console.log(selection)
-    console.log(computerSelection);
-	} else if (compWins) {
-    console.log('computer wins');
-    console.log(selection)
-    console.log(computerSelection);
-	} else {
-    console.log('its a draw');
-    console.log(selection)
-    console.log(computerSelection);
-	}
-}
+		selectionButtons.forEach((selectionButton) => {
+			selectionButton.addEventListener('click', (e) => {
+				const selectionName = selectionButton.dataset.selection;
+				const selection = moves.find((move) => move.name === selectionName);
+				makeSelection(selection);
+			});
+		});
 
-function isWinner(selection, opponentSelection) {
-	return selection.beats === opponentSelection.name;
-}
+		//runs player/computer selection through winner function
+		function makeSelection(selection) {
+			const computerSelection = randomSelection();
+			const youWin = isWinner(selection, computerSelection);
+			const compWins = isWinner(computerSelection, selection);
+			let playerScore = document.querySelector('.player-score');
+			let compScore = document.querySelector('.computer-score');
 
-// randomly returns rock, paper, or scissors
-function randomSelection() {
-	let move = moves[Math.floor(Math.random() * moves.length)];
-	return move;
-}
+			//change switch emojis to chosen moves
+			playerHand.textContent = Object.values(selection)[1];
+			computerHand.textContent = Object.values(computerSelection)[1];
+
+			if (youWin) {
+				playerPoints++;
+				playerScore.textContent = playerPoints;
+				winningText.textContent = `${Object.values(selection)[0]} beats 
+          ${Object.values(computerSelection)[0]}!
+          `;
+			} else if (compWins) {
+				compPoints++;
+				compScore.textContent = compPoints;
+				winningText.textContent = `${Object.values(computerSelection)[0]} beats 
+          ${Object.values(selection)[0]}!
+          `;
+			} else {
+				winningText.textContent = "It's a Draw!";
+			}
+			if (playerPoints === 3 || compPoints === 3) {
+				gameOver();
+			}
+
+			//determines winning selection
+			function isWinner(selection, opponentSelection) {
+				return selection.beats === opponentSelection.name;
+			}
+
+			//randomly returns rock, paper, or scissors
+			function randomSelection() {
+				let move = moves[Math.floor(Math.random() * moves.length)];
+				return move;
+			}
+		}
+
+		const gameOver = () => {
+			const restartButton = document.querySelector('.restart-game');
+
+			if (playerPoints === 3) {
+				winningText.textContent = 'You Win the Game!';
+			} else if (compPoints === 3) {
+				winningText.textContent = 'You Lose.';
+			}
+
+			emojiBtns.classList.add('fadeOut');
+			restartButton.classList.add('fadeIn');
+			restartButton.addEventListener('click', (e) => {
+				location.reload();
+			});
+		};
+	};
+	//fades intro screen into main game screen
+	startGame();
+
+	//starts all inner game functions
+	playMatch();
+};
+
+//start main game
+game();

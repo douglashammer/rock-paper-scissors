@@ -9,32 +9,35 @@
 	<body>
 		<div class="game-container">
 			<section class="score-container">
-				<div class="player-score">
-					<h2>You</h2>
-					<p>0</p>
+				<div>
+					<h2>Player</h2>
+					<p class="player-score">0</p>
 				</div>
-				<div class="computer-score">
+				<div>
 					<h2>Computer</h2>
-					<p>0</p>
+					<p class="computer-score">0</p>
 				</div>
 			</section>
 
 			<section class="intro">
 				<h1 class="title">Rock, Paper, Scissors</h1>
+				<button class="play-btn">Let's Play!</button>
 			</section>
 
-			<section class="match">
+			<section class="match fadeOut">
 				<div class="hands">
-					<p class="hand-left">✊</p>
-					<p class="hand-right">✊</p>
+					<p class="player-hand">✊</p>
+					<p class="computer-hand">✊</p>
 				</div>
 				<h2 class="winner">Choose an option</h2>
+				<div class="restart-container">
+					<button class="restart-game fadeOut">Play Again?</button>
+				</div>
 				<div class="emoji-buttons">
 					<button data-selection="rock">✊</button>
 					<button data-selection="paper">✋</button>
 					<button data-selection="scissors">✌</button>
 				</div>
-				<button class="play-btn">Let's Play!</button>
 			</section>
 		</div>
 
