@@ -1,3 +1,18 @@
-This project is a combination of a couple tutorials and personal ideas. I chose to use emojis as the hand objects for the game rather than use text. I also added a restart button that appears after the conclusion of the game when a player has won three rounds. 
-It was quite challenging organizing the function and event listeners in an order that made sense. MY variable names are all over the place as well. I would find that in order to access a variable farther down in my code that I'd have to remove it from its original function into a global state. Not sure if a few of those instances could have been done neater, but I managed to get functions working this way.
-I need to spend more time actively thinking about the layout of my projects next time around. Nevertheless, this turned out being a great project for googling help and structuring a game.
+# "Rock, Paper, Scissors" game
+Animated Rock, Paper, Scissors game
+assignment from [The Odin Project](https://www.theodinproject.com/paths/foundations/courses/foundations/lessons/rock-paper-scissors)
+
+![Screenshot of Project](rock-paper-scissors-img.png)
+
+## Technologies/Tools
+Project is created with:
+* Visual Studio Code
+* HTML
+* CSS
+* Vanilla JavaScript
+
+## Summary
+What I learned:
+* Adding/Removing classes on HTML elements through JS
+* Git features 
+* Game functions that change page content 
