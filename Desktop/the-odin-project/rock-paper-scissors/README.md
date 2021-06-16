@@ -1,6 +1,6 @@
 # "Rock, Paper, Scissors" game
-Animated Rock, Paper, Scissors game
-assignment from [The Odin Project](https://www.theodinproject.com/paths/foundations/courses/foundations/lessons/rock-paper-scissors)
+Animated Rock, Paper, Scissors game\
+Assignment from [The Odin Project](https://www.theodinproject.com/paths/foundations/courses/foundations/lessons/rock-paper-scissors). Live preview [here](https://douglashammer.github.io/rock-paper-scissors/).
 
 ![Screenshot of Project](rock-paper-scissors-img.png)
 
